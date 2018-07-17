@@ -1,5 +1,6 @@
 package br.com.carloswgama.intents;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -16,8 +17,9 @@ public class DetalhesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes);
 
+        Intent intent = getIntent();
         //ID usado para popular
-        int id = 1;
+        int id = intent.getIntExtra("id", 0);
         Contato contato = dao.buscar(id);
 
         //Nome

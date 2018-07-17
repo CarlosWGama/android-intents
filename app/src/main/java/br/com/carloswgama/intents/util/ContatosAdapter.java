@@ -1,5 +1,6 @@
 package br.com.carloswgama.intents.util;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import br.com.carloswgama.intents.DetalhesActivity;
 import br.com.carloswgama.intents.R;
 import br.com.carloswgama.intents.model.Contato;
 
@@ -18,13 +20,15 @@ public class ContatosAdapter extends RecyclerView.Adapter {
 
         private TextView nome;
 
-        public ContatoViewHolder(View itemView) {
+        public ContatoViewHolder(final View itemView) {
             super(itemView);
             nome = itemView.findViewById(R.id.rv_tv_nome);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Ação do Clique
+                    Intent intent = new Intent(itemView.getContext(), DetalhesActivity.class);
+                    intent.putExtra("id", contatos.get(getAdapterPosition()).getId());
+                    itemView.getContext().startActivity(intent);
                 }
             });
         }
